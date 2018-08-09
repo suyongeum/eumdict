@@ -1,3 +1,5 @@
+# There are two migrations folders: 1) eumdict, 2) wordgaps. Before running below, remove files in the two folders.
+
 migrations
 
 python3 manage.py makemigrations core
