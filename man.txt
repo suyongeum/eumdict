@@ -1,0 +1,27 @@
+migrations
+
+python3 manage.py makemigrations core
+
+python3 manage.py migrate
+
+python3 manage.py loaddata settings
+
+python3 manage.py loaddata admin // admin@admin.com sfsklw3re4f(md5:c2ffd0a03de32d79522d3f18668fca16)
+
+
+
+NLTK:
+import nltk
+nltk.download()
+chooose WordNet, punkt, averaged_perceptron_tagger
+
+
+
+On the computer that will be used for development, add this to your ~/.bashrc file:
+export DJANGO_PRODUCTION=true
+
+
+Add ids to entries table
+
+ALTER TABLE entries ADD id MEDIUMINT NOT NULL AUTO_INCREMENT KEY
+RENAME TABLE entries TO definitions;

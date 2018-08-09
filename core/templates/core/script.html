@@ -1,0 +1,39 @@
+{% extends "master.html" %}
+
+{% load staticfiles %}
+
+{% block title %}Script{% endblock %}
+
+{% block content %}
+    <div class="header clearfix">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="text-muted">Script</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div id="script-text" class="script-block">
+                        {% for line in lines %}
+                            <p id="line{{ forloop.counter0 }}">{{ line }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+{% endblock %}
+
+
+{% block scripts %}
+
+{% endblock %}

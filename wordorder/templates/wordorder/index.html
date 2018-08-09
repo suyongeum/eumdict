@@ -1,0 +1,201 @@
+{% extends "master.html" %}
+
+{% load staticfiles %}
+
+{% block title %}Word order{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
+                    <div class="form-row">
+                        <button id="script-btn" class="btn btn-default" title="Script (alt+s)">
+                            Script
+                        </button>
+                    </div>
+                </div>
+                <div class="col-lg-11 col-md-11 col-sm-11 col-xs-10">
+                    <div class="my-form-inline form-row menu-row">
+
+                        {% if not authenticated %}
+
+                            <input type="email" class="form-control login-control" id="email-tb" placeholder="Email">
+                            <input type="password" class="form-control login-control" id="password-tb" placeholder="Password">
+                            <button id="login-btn" class="btn btn-primary" title="Log in">
+                                <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+                            </button>
+                            <button id="register-btn" class="btn btn-default" title="Register">
+                                Register
+                            </button>
+
+
+                        {% else %}
+                            <span>Hello, <strong>{{ name }}</strong>!</span>
+                            <button id="logout-btn" class="btn btn-warning" title="Logout">
+                                Logout
+                            </button>
+
+                        {% endif %}
+                        <button id="settings-btn" class="btn btn-default" title="Settings">
+                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="my-form-inline form-row selection-form">
+                        <select class="form-control" id="audio-list" title="Choose audio">
+                        </select>
+
+                        <button id="prev-btn" class="btn btn-default" title="Previous audio (alt+[)">
+                            <span class="glyphicon glyphicon-backward" aria-hidden="true"></span>
+                        </button>
+                        <button id="next-btn" class="btn btn-default" title="Next audio (alt+])">
+                            <span class="glyphicon glyphicon-forward" aria-hidden="true"></span>
+                        </button>
+
+
+                        <button id="replay" class="btn btn-default" title="Play/Stop (alt+p)">
+                            <span id="replay-btn-icon" class="glyphicon glyphicon-play" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div id="sentence-block" class="sentence-block">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div id="words-block" class="words-block">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="button-block">
+                        <button id="check-btn" class="btn btn-success" title="Check (alt+c)">
+                            Check
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row definition-panel">
+                <div class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
+                    <h4 id="definition-title">
+                    </h4>
+                    <p id="definition-block">
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Registaration modal -->
+    <div class="modal fade" id="register-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Registration form</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Name</label>
+                        <input type="text" class="form-control" id="reg-name" placeholder="Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" class="form-control" id="reg-email" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" id="reg-password" placeholder="Password">
+                    </div>
+                    <span id="reg-error" class="error"></span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success" id="reg-submit">Register</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Registaration modal -->
+    <div class="modal fade" id="settings-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Settings</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label class="control-label" for="number-of-repetitions-select">Number of repetitions</label>
+                        <select class="form-control" id="number-of-repetitions-select"
+                                　aria-describedby=number-of-repetitions-help">
+                            <option value="0">∞ (Non-stop)</option>
+                            <option selected value="1">1 time</option>
+                            <option value="2">2 times</option>
+                            <option value="3">3 times</option>
+                            <option value="4">4 times</option>
+                            <option value="5">5 times</option>
+                        </select>
+                        <span id="number-of-repetitions-help"
+                              class="help-block">How many times audio will be played</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="delay-between-repetitions-select">Delay between
+                            repetitions</label>
+                        <select class="form-control" id="delay-between-repetitions-select"
+                                　aria-describedby="delay-between-repetitions-help">
+                            <option value="100">0.1 sec.</option>
+                            <option value="200">0.2 sec.</option>
+                            <option value="300">0.3 sec.</option>
+                            <option value="400">0.4 sec.</option>
+                            <option selected value="500">0.5 sec.</option>
+                            <option value="600">0.6 sec.</option>
+                            <option value="700">0.7 sec.</option>
+                            <option value="800">0.8 sec.</option>
+                            <option value="900">0.9 sec.</option>
+                            <option value="1000">1 sec.</option>
+                        </select>
+                        <span id="delay-between-repetitions-help"
+                              class="help-block">Delay between each time audio is played</span>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success" id="settings-save-submit">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+{% block scripts %}
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+    <script src="{% static 'js/vendor/Uri.js' %}"></script>
+    <script src="{% static 'js/vendor/alertify.js' %}"></script>
+    <script src="{% static 'js/vendor/moment.min.js' %}"></script>
+    <script src="{% static 'js/vendor/lockr.js' %}"></script>
+    <script src="{% static 'js/vendor/soundmanager2-nodebug-jsmin.js' %}"></script>
+    <script src="{% static 'js/vendor/mousetrap.min.js' %}"></script>
+    <script src="{% static 'wordorder/js/main.js' %}"></script>
+{% endblock %}

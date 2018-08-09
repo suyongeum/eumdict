@@ -1,0 +1,11 @@
+[
+  {
+    "model": "core.User",
+    "pk": 1,
+    "fields": {
+      "name": "Admin",
+      "email": "admin@admin.com",
+      "password": "c2ffd0a03de32d79522d3f18668fca16"
+    }
+  }
+]

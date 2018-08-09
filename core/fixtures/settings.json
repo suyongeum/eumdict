@@ -1,0 +1,18 @@
+[
+  {
+    "model": "core.Setting",
+    "pk": 1,
+    "fields": {
+      "setting_name": "number_of_repetitions",
+      "default_value": "1"
+    }
+  },
+  {
+    "model": "core.Setting",
+    "pk": 2,
+    "fields": {
+      "setting_name": "delay_between_repetitions",
+      "default_value": "500"
+    }
+  }
+]
