@@ -21,3 +21,6 @@ dict/
 
 # database file				
 **.sql
+
+# database file				
+**.DS_Store
