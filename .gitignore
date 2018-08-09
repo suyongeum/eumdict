@@ -10,9 +10,6 @@ eumdict/settings/production.py
 # all files under logs directory
 **.log
 
-# log directory
-logs/
-
 # dictionary database
 dict/
 
@@ -24,3 +21,6 @@ dict/
 
 # database file				
 **.DS_Store
+
+# this file itself
+**.gitignore
