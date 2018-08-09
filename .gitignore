@@ -1,0 +1,23 @@
+# ignore all files in the .idea/ directory (pycharm files)
+.idea/
+
+# Setting files
+eumdict/settings/local.py
+
+# Setting files
+eumdict/settings/production.py
+
+# all files under logs directory
+**.log
+
+# dictionary database
+dict/
+
+# compiled py files			
+**.pyc
+
+# database file				
+**.sql
+
+# database file				
+**.DS_Store
