@@ -14,7 +14,8 @@ eumdict/settings/production.py
 dict/
 
 # migrations folder
-**migrations/
+core/migrations/
+wordgaps/migrations/
 
 # compiled py files			
 **.pyc
