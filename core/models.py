@@ -55,27 +55,27 @@ class Word(models.Model):
 
 
 class Definitions(models.Model):
-    id = models.IntegerField(primary_key=True)
+#    id = models.IntegerField(primary_key=True)
     word = models.CharField(max_length=100)
     wordtype = models.CharField(max_length=100)
-    definition = models.TextField()
+    definition = models.TextField(null=True)
 
     class Meta:
-        managed = False
+        #managed = False
         db_table = 'definitions'
 
 
 class Content(models.Model):
-    id = models.IntegerField(primary_key=True)
+#    id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=200)
 
     class Meta:
-        managed = False
+        #managed = False
         db_table = 'content'
 
 
 class Line(models.Model):
-    id = models.IntegerField(primary_key=True)
+#    id = models.IntegerField(primary_key=True)
     content_id = models.IntegerField()
     line_id = models.IntegerField()
     text = models.TextField()
@@ -86,14 +86,14 @@ class Line(models.Model):
 
 
 class LineWord(models.Model):
-    id = models.IntegerField(primary_key=True)
+#    id = models.IntegerField(primary_key=True)
     content_id = models.IntegerField()
     line_id = models.IntegerField()
     order = models.IntegerField()
     original = models.CharField(max_length=200)
-    difficulty = models.IntegerField()
-    definition = models.TextField()
-    pos = models.CharField(max_length=100)
+    difficulty = models.IntegerField(null=True)
+    definition = models.TextField(null=True)
+    pos = models.CharField(max_length=100, null=True)
 
     class Meta:
         db_table = 'line_word'
