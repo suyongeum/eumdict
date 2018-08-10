@@ -13,6 +13,9 @@ eumdict/settings/production.py
 # dictionary database
 dict/
 
+# migrations folder
+migrations/
+
 # compiled py files			
 **.pyc
 
